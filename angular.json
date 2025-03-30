@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "signup-app": {
+    "angular-signup-app": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/signup-app",
+            "outputPath": "dist/angular-signup-app",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -65,10 +65,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "signup-app:build:production"
+              "buildTarget": "angular-signup-app:build:production"
             },
             "development": {
-              "buildTarget": "signup-app:build:development"
+              "buildTarget": "angular-signup-app:build:development"
             }
           },
           "defaultConfiguration": "development"
