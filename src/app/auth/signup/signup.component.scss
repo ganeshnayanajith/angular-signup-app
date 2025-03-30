@@ -1,0 +1,176 @@
+:host {
+  display: block;
+}
+
+.signup-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 2rem;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+.signup-card {
+  max-width: 600px;
+  width: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+mat-card-header {
+  background-color: #3f51b5;
+  color: white;
+  padding: 2rem 2rem 1.5rem;
+  border-radius: 10px 10px 0 0;
+}
+
+.header-content {
+  width: 100%;
+  text-align: center;
+
+  .title {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+
+  .subtitle {
+    margin-top: 0.5rem;
+    font-size: 1rem;
+    opacity: 0.8;
+  }
+}
+
+mat-card-content {
+  padding: 2rem;
+}
+
+.form-field {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.name-row {
+  display: flex;
+  gap: 1rem;
+  
+  @media (max-width: 600px) {
+    flex-direction: column;
+    gap: 0;
+  }
+}
+
+.password-strength {
+  margin-top: -0.5rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+
+  span {
+    font-size: 0.8rem;
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  mat-progress-bar {
+    flex: 1;
+    height: 6px;
+    border-radius: 3px;
+    overflow: hidden;
+  }
+
+  .strength-text {
+    font-weight: 500;
+    
+    &.primary {
+      color: #3f51b5;
+    }
+    
+    &.accent {
+      color: #ff4081;
+    }
+    
+    &.warn {
+      color: #f44336;
+    }
+  }
+}
+
+.terms-container {
+  margin: 1.5rem 0;
+  
+  .terms-link {
+    color: #3f51b5;
+    text-decoration: none;
+    font-weight: 500;
+    
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  
+  .terms-error {
+    margin-top: 0.5rem;
+    font-size: 0.75rem;
+    color: #f44336;
+  }
+}
+
+.action-row {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+  
+  .signup-button {
+    min-width: 160px;
+    padding: 0.5rem 2rem;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 30px;
+    transition: transform 0.2s;
+    
+    &:not([disabled]):hover {
+      transform: translateY(-2px);
+    }
+    
+    .spinner {
+      margin: 0 auto;
+    }
+  }
+}
+
+mat-card-actions {
+  padding: 1.5rem;
+  
+  .login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+    .account-text {
+      margin-bottom: 0.5rem;
+      color: rgba(0, 0, 0, 0.6);
+    }
+    
+    .login-button {
+      font-weight: 500;
+    }
+  }
+}

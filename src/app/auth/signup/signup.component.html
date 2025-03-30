@@ -1,0 +1,123 @@
+<div class="signup-container">
+  <mat-card class="signup-card">
+    <mat-card-header>
+      <div class="header-content">
+        <h1 class="title">Create Account</h1>
+        <p class="subtitle">Join our community today</p>
+      </div>
+    </mat-card-header>
+
+    <mat-card-content>
+      <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+        <div class="name-row">
+          <mat-form-field appearance="outline" class="form-field">
+            <mat-label>First Name</mat-label>
+            <input matInput formControlName="firstName" placeholder="Enter your first name">
+            <mat-icon matSuffix>person</mat-icon>
+            <mat-error *ngIf="firstNameControl?.errors?.['required']">First name is required</mat-error>
+            <mat-error *ngIf="firstNameControl?.errors?.['minlength']">First name must be at least 2 characters</mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="form-field">
+            <mat-label>Last Name</mat-label>
+            <input matInput formControlName="lastName" placeholder="Enter your last name">
+            <mat-icon matSuffix>person</mat-icon>
+            <mat-error *ngIf="lastNameControl?.errors?.['required']">Last name is required</mat-error>
+            <mat-error *ngIf="lastNameControl?.errors?.['minlength']">Last name must be at least 2 characters</mat-error>
+          </mat-form-field>
+        </div>
+
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email" placeholder="Enter your email" type="email">
+          <mat-icon matSuffix>email</mat-icon>
+          <mat-error *ngIf="emailControl?.errors?.['required']">Email is required</mat-error>
+          <mat-error *ngIf="emailControl?.errors?.['email']">Please enter a valid email address</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Password</mat-label>
+          <input 
+            matInput 
+            formControlName="password" 
+            [type]="hidePassword ? 'password' : 'text'" 
+            placeholder="Enter your password">
+          <button 
+            mat-icon-button 
+            matSuffix 
+            (click)="hidePassword = !hidePassword" 
+            [attr.aria-label]="'Hide password'" 
+            [attr.aria-pressed]="hidePassword">
+            <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+          <mat-error *ngIf="passwordControl?.errors?.['required']">Password is required</mat-error>
+          <mat-error *ngIf="passwordControl?.errors?.['minlength']">Password must be at least 8 characters</mat-error>
+          <mat-error *ngIf="passwordControl?.errors?.['weakPassword']">
+            Password must include uppercase, lowercase, numbers, and special characters
+          </mat-error>
+        </mat-form-field>
+
+        <div class="password-strength" *ngIf="passwordControl?.value">
+          <span>Password Strength:</span>
+          <mat-progress-bar 
+            [color]="getPasswordStrengthColor()" 
+            mode="determinate" 
+            [value]="passwordStrength">
+          </mat-progress-bar>
+          <span class="strength-text" [ngClass]="getPasswordStrengthColor()">
+            {{ passwordStrength < 40 ? 'Weak' : (passwordStrength < 70 ? 'Medium' : 'Strong') }}
+          </span>
+        </div>
+
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Confirm Password</mat-label>
+          <input 
+            matInput 
+            formControlName="confirmPassword" 
+            [type]="hideConfirmPassword ? 'password' : 'text'" 
+            placeholder="Confirm your password">
+          <button 
+            mat-icon-button 
+            matSuffix 
+            (click)="hideConfirmPassword = !hideConfirmPassword" 
+            [attr.aria-label]="'Hide password'" 
+            [attr.aria-pressed]="hideConfirmPassword">
+            <mat-icon>{{hideConfirmPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+          <mat-error *ngIf="confirmPasswordControl?.errors?.['required']">Please confirm your password</mat-error>
+          <mat-error *ngIf="signupForm?.errors?.['passwordMismatch']">Passwords do not match</mat-error>
+        </mat-form-field>
+
+        <div class="terms-container">
+          <mat-checkbox formControlName="terms" color="primary">
+            I agree to the <a href="#" class="terms-link">Terms of Service</a> and <a href="#" class="terms-link">Privacy Policy</a>
+          </mat-checkbox>
+          <mat-error *ngIf="termsControl?.errors?.['required'] && termsControl?.touched" class="terms-error">
+            You must accept the terms to continue
+          </mat-error>
+        </div>
+
+        <div class="action-row">
+          <button 
+            mat-raised-button 
+            color="primary" 
+            type="submit" 
+            class="signup-button"
+            [disabled]="signupForm.invalid || isSubmitting">
+            <span *ngIf="!isSubmitting">Sign Up</span>
+            <mat-spinner *ngIf="isSubmitting" diameter="24" class="spinner"></mat-spinner>
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
+
+    <mat-divider></mat-divider>
+
+    <mat-card-actions>
+      <div class="login-container">
+        <p class="account-text">Already have an account?</p>
+        <button mat-button color="accent" class="login-button">Log In</button>
+      </div>
+    </mat-card-actions>
+  </mat-card>
+</div>
