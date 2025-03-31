@@ -29,7 +29,7 @@
 
         <mat-form-field appearance="outline" class="form-field">
           <mat-label>Email</mat-label>
-          <input matInput formControlName="email" placeholder="Enter your email" type="email">
+          <input matInput formControlName="email" placeholder="Enter your email" type="email" autocomplete="username">
           <mat-icon matSuffix>email</mat-icon>
           <mat-error *ngIf="emailControl?.errors?.['required']">Email is required</mat-error>
           <mat-error *ngIf="emailControl?.errors?.['email']">Please enter a valid email address</mat-error>
@@ -41,7 +41,8 @@
             matInput 
             formControlName="password" 
             [type]="hidePassword ? 'password' : 'text'" 
-            placeholder="Enter your password">
+            placeholder="Enter your password"
+            autocomplete="new-password">
           <button 
             mat-icon-button 
             matSuffix 
@@ -75,7 +76,8 @@
             matInput 
             formControlName="confirmPassword" 
             [type]="hideConfirmPassword ? 'password' : 'text'" 
-            placeholder="Confirm your password">
+            placeholder="Confirm your password"
+            autocomplete="new-password">
           <button 
             mat-icon-button 
             matSuffix 
